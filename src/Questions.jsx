@@ -240,44 +240,43 @@ const Questions = () => {
       <div className="tracker">
         <CategoryProgressBar categories={categories} progress={progress} />
       </div>
+      <h3 className="category-name">{currentCategory.name}</h3>
       <div className="quesImg">
         <div className="question">
-          <div className="optionsContainer">
-            <p id="questionP">{currentQuestion.question}</p>
-            {currentQuestion.options.map((option, index) => (
-              <label key={option} id="option-radio">
-                <input
-                  type="radio"
-                  name={currentQuestion.question}
-                  value={option}
-                  checked={answers[currentQuestion.question] === option}
-                  onChange={() =>
-                    handleAnswerChange(
-                      currentQuestion.question,
-                      option,
-                      currentQuestion.scores[index]
-                    )
-                  }
-                />
-                {option}
-              </label>
-            ))}
-          </div>
+          <p id="questionP">{currentQuestion.question}</p>
+          {currentQuestion.options.map((option, index) => (
+            <label key={option} id="option-radio">
+              <input
+                type="radio"
+                name={currentQuestion.question}
+                value={option}
+                checked={answers[currentQuestion.question] === option}
+                onChange={() =>
+                  handleAnswerChange(
+                    currentQuestion.question,
+                    option,
+                    currentQuestion.scores[index]
+                  )
+                }
+              />
+              {option}
+            </label>
+          ))}
         </div>
-        <div
+        {/* <div
           className="imgDiv"
           style={{
             backgroundImage: `url(${
               categoryImages[currentCategory.name] || ""
             })`,
           }}
-        ></div>
+        ></div> */}
       </div>
     </div>
   );
 };
 const CategoryProgressBar = ({ categories, progress }) => {
-  const totalDots = 6; // Update to 6 dots
+  const totalDots = 6;
   return (
     <div className="category-progress-bar">
       <div className="progress-line">

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Questions.css";
 
-//importing images
-import LifestyleImage from "./assets/image1.jpg";
-import FoodHabitsImage from "./assets/image2.jpg";
-import ExerciseImage from "./assets/image3.jpg";
-import SleepPatternsImage from "./assets/image4.jpg";
-import MentalWellbeingImage from "./assets/image5.jpg";
+// Importing images (commented out since you're not currently using them)
+// import LifestyleImage from "./assets/image1.jpg";
+// import FoodHabitsImage from "./assets/image2.jpg";
+// import ExerciseImage from "./assets/image3.jpg";
+// import SleepPatternsImage from "./assets/image4.jpg";
+// import MentalWellbeingImage from "./assets/image5.jpg";
 
 const categories = [
   {
@@ -14,23 +14,46 @@ const categories = [
     questions: [
       {
         question: "How often do you exercise?",
-        options: ["Daily", "Weekly", "Rarely", "Never"],
+        options: [
+          "Daily (1 hour)",
+          "Weekly (2-3 times)",
+          "Rarely (once a month)",
+          "Never (not at all)",
+        ],
         scores: [4, 3, 2, 1],
       },
-      { question: "Do you smoke?", options: ["Yes", "No"], scores: [0, 5] },
+      {
+        question: "Do you smoke?",
+        options: ["Yes, regularly", "No, never"],
+        scores: [0, 5],
+      },
       {
         question: "How many hours do you work per day?",
-        options: ["<4", "4-6", "6-8", "8+"],
+        options: [
+          "Less than 4 hours",
+          "4-6 hours",
+          "6-8 hours",
+          "More than 8 hours",
+        ],
         scores: [4, 3, 2, 1],
       },
       {
         question: "Do you feel stressed frequently?",
-        options: ["Yes", "No", "Sometimes"],
+        options: [
+          "Yes, almost daily",
+          "No, rarely",
+          "Sometimes, in tough situations",
+        ],
         scores: [1, 4, 2],
       },
       {
         question: "How many hours do you spend on screens daily?",
-        options: ["<2", "2-4", "4-6", "6+"],
+        options: [
+          "Less than 2 hours",
+          "2-4 hours",
+          "4-6 hours",
+          "More than 6 hours",
+        ],
         scores: [4, 3, 2, 1],
       },
     ],
@@ -40,27 +63,41 @@ const categories = [
     questions: [
       {
         question: "How many servings of vegetables do you eat per day?",
-        options: ["0-1", "2-3", "4-5", "More than 5"],
+        options: [
+          "0-1 servings",
+          "2-3 servings",
+          "4-5 servings",
+          "More than 5 servings",
+        ],
         scores: [1, 2, 3, 4],
       },
       {
         question: "Do you consume fast food often?",
-        options: ["Yes", "No"],
+        options: ["Yes, almost daily", "No, very rarely"],
         scores: [1, 5],
       },
       {
         question: "How much water do you drink daily?",
-        options: ["<1L", "1-2L", "2-3L", "More than 3L"],
+        options: [
+          "Less than 1 liter",
+          "1-2 liters",
+          "2-3 liters",
+          "More than 3 liters",
+        ],
         scores: [1, 2, 3, 4],
       },
       {
         question: "How many meals do you eat per day?",
-        options: ["1", "2", "3", "More than 3"],
+        options: ["1 meal", "2 meals", "3 meals", "More than 3 meals"],
         scores: [1, 2, 3, 4],
       },
       {
         question: "Do you consume sugary drinks daily?",
-        options: ["Yes", "No", "Occasionally"],
+        options: [
+          "Yes, every day",
+          "No, never",
+          "Occasionally, once in a while",
+        ],
         scores: [1, 4, 2],
       },
     ],
@@ -70,27 +107,45 @@ const categories = [
     questions: [
       {
         question: "What type of exercise do you do most?",
-        options: ["Cardio", "Strength", "Yoga", "None"],
+        options: [
+          "Cardio (running, cycling)",
+          "Strength training (weights, resistance)",
+          "Yoga and meditation",
+          "None, I don't exercise",
+        ],
         scores: [4, 4, 3, 1],
       },
       {
         question: "How long do you exercise per session?",
-        options: ["<15 mins", "15-30 mins", "30-45 mins", "More than 45 mins"],
+        options: [
+          "Less than 15 minutes",
+          "15-30 minutes",
+          "30-45 minutes",
+          "More than 45 minutes",
+        ],
         scores: [1, 2, 3, 4],
       },
       {
         question: "How many days a week do you exercise?",
-        options: ["0", "1-2", "3-4", "5+"],
+        options: ["0 days", "1-2 days", "3-4 days", "5 or more days"],
         scores: [1, 2, 3, 4],
       },
       {
         question: "Do you feel energetic after exercise?",
-        options: ["Yes", "No", "Sometimes"],
+        options: [
+          "Yes, very refreshed",
+          "No, I feel exhausted",
+          "Sometimes, depends on the workout",
+        ],
         scores: [4, 1, 2],
       },
       {
         question: "Do you experience body pain due to lack of activity?",
-        options: ["Yes", "No", "Occasionally"],
+        options: [
+          "Yes, often",
+          "No, not at all",
+          "Occasionally, mild discomfort",
+        ],
         scores: [1, 4, 2],
       },
     ],
@@ -100,27 +155,40 @@ const categories = [
     questions: [
       {
         question: "How many hours do you sleep per night?",
-        options: ["<4", "4-6", "6-8", "More than 8"],
+        options: [
+          "Less than 4 hours",
+          "4-6 hours",
+          "6-8 hours",
+          "More than 8 hours",
+        ],
         scores: [1, 2, 4, 3],
       },
       {
         question: "Do you have trouble falling asleep?",
-        options: ["Yes", "No", "Sometimes"],
+        options: [
+          "Yes, every night",
+          "No, I sleep easily",
+          "Sometimes, on stressful days",
+        ],
         scores: [1, 4, 2],
       },
       {
         question: "Do you wake up feeling refreshed?",
-        options: ["Yes", "No", "Sometimes"],
+        options: [
+          "Yes, always",
+          "No, I wake up tired",
+          "Sometimes, depends on sleep quality",
+        ],
         scores: [4, 1, 2],
       },
       {
         question: "Do you use electronic devices before bed?",
-        options: ["Yes", "No"],
+        options: ["Yes, always", "No, I avoid screens at night"],
         scores: [1, 4],
       },
       {
         question: "How often do you wake up during the night?",
-        options: ["Never", "1-2 times", "3+ times"],
+        options: ["Never, I sleep through", "1-2 times", "3 or more times"],
         scores: [4, 2, 1],
       },
     ],
@@ -130,27 +198,50 @@ const categories = [
     questions: [
       {
         question: "How often do you feel anxious or stressed?",
-        options: ["Daily", "Weekly", "Rarely", "Never"],
+        options: [
+          "Daily, all the time",
+          "Weekly, occasionally",
+          "Rarely, only in tough situations",
+          "Never, I am stress-free",
+        ],
         scores: [1, 2, 3, 4],
       },
       {
         question: "Do you engage in relaxation techniques?",
-        options: ["Yes", "No", "Sometimes"],
+        options: [
+          "Yes, regularly (meditation, breathing exercises)",
+          "No, never",
+          "Sometimes, when needed",
+        ],
         scores: [4, 1, 2],
       },
       {
         question: "Do you feel socially connected with friends/family?",
-        options: ["Yes", "No", "Occasionally"],
+        options: [
+          "Yes, always in touch",
+          "No, I feel isolated",
+          "Occasionally, when I have time",
+        ],
         scores: [4, 1, 2],
       },
       {
         question: "How would you rate your overall happiness?",
-        options: ["1", "2", "3", "4", "5"],
+        options: [
+          "Very unhappy (1)",
+          "Somewhat unhappy (2)",
+          "Neutral (3)",
+          "Happy (4)",
+          "Very happy (5)",
+        ],
         scores: [1, 2, 3, 4, 5],
       },
       {
         question: "Do you struggle with focus and concentration?",
-        options: ["Yes", "No", "Sometimes"],
+        options: [
+          "Yes, I get distracted easily",
+          "No, I am very focused",
+          "Sometimes, depending on my mood",
+        ],
         scores: [1, 4, 2],
       },
     ],
@@ -164,6 +255,7 @@ const Questions = () => {
   const [score, setScore] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [showAlert, setShowAlert] = useState(false);
 
   const totalQuestionsCount = categories.reduce(
     (sum, category) => sum + category.questions.length,
@@ -178,38 +270,65 @@ const Questions = () => {
     setProgress(newProgress);
   }, [currentCategoryIndex, currentQuestionIndex, totalQuestionsCount]);
 
-  const totalScore = categories.reduce(
-    (sum, category) =>
-      sum + category.questions.reduce((qSum, q) => qSum + 5, 0),
-    0
-  );
+  const totalScore = categories.reduce((sum, category) => {
+    return (
+      sum +
+      category.questions.reduce((categorySum, question) => {
+        return categorySum + Math.max(...question.scores);
+      }, 0)
+    );
+  }, 0);
+
   const handleAnswerChange = (question, answer, scoreValue) => {
     setAnswers((prev) => ({
       ...prev,
       [question]: answer,
     }));
     setScore((prev) => prev + scoreValue);
+    setShowAlert(false);
+  };
 
-    setTimeout(() => {
-      const category = categories[currentCategoryIndex];
-      if (currentQuestionIndex < category.questions.length - 1) {
-        setCurrentQuestionIndex((prev) => prev + 1);
-      } else if (currentCategoryIndex < categories.length - 1) {
-        setCurrentCategoryIndex((prev) => prev + 1);
-        setCurrentQuestionIndex(0);
-      } else {
-        setIsCompleted(true);
-      }
-    }, 500);
+  const goToNextQuestion = () => {
+    const category = categories[currentCategoryIndex];
+    if (currentQuestionIndex < category.questions.length - 1) {
+      setCurrentQuestionIndex((prev) => prev + 1);
+    } else if (currentCategoryIndex < categories.length - 1) {
+      setCurrentCategoryIndex((prev) => prev + 1);
+      setCurrentQuestionIndex(0);
+    } else {
+      setIsCompleted(true);
+    }
+  };
+
+  const goToPreviousQuestion = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex((prev) => prev - 1);
+    } else if (currentCategoryIndex > 0) {
+      const prevCategory = categories[currentCategoryIndex - 1];
+      setCurrentCategoryIndex((prev) => prev - 1);
+      setCurrentQuestionIndex(prevCategory.questions.length - 1);
+    }
+  };
+
+  const handleNextClick = () => {
+    if (!answers[currentQuestion.question]) {
+      setShowAlert(true);
+      return;
+    }
+    goToNextQuestion();
   };
 
   if (isCompleted) {
-    console.log(totalScore);
-    console.log(score);
     return (
-      <div className="container">
+      <div
+        className="container"
+        style={{ textAlign: "center", justifyContent: "center" }}
+      >
         <h2>Assessment Completed!</h2>
         <p>Thank you for your responses.</p>
+        <p>
+          Your score: {score} out of {totalScore}
+        </p>
       </div>
     );
   }
@@ -226,57 +345,80 @@ const Questions = () => {
     );
   }
 
-  // Object to map category names to images
-  const categoryImages = {
-    Lifestyle: LifestyleImage,
-    "Food Habits": FoodHabitsImage,
-    Exercise: ExerciseImage,
-    "Sleep Patterns": SleepPatternsImage,
-    "Mental Well-being": MentalWellbeingImage,
-  };
-
   return (
     <div className="container">
+      {showAlert && (
+        <div className="custom-alert-overlay">
+          <div className="custom-alert">
+            <h3>Please Select an Option</h3>
+            <p>You need to select an answer before proceeding.</p>
+            <button onClick={() => setShowAlert(false)}>OK</button>
+          </div>
+        </div>
+      )}
+
       <div className="tracker">
         <CategoryProgressBar categories={categories} progress={progress} />
       </div>
       <h3 className="category-name">{currentCategory.name}</h3>
+
       <div className="quesImg">
-        <div className="question">
-          <p id="questionP">{currentQuestion.question}</p>
-          {currentQuestion.options.map((option, index) => (
-            <label key={option} id="option-radio">
-              <input
-                type="radio"
-                name={currentQuestion.question}
-                value={option}
-                checked={answers[currentQuestion.question] === option}
-                onChange={() =>
-                  handleAnswerChange(
-                    currentQuestion.question,
-                    option,
-                    currentQuestion.scores[index]
-                  )
-                }
-              />
-              {option}
-            </label>
-          ))}
+        <div className="question-content">
+          <div className="question-text-container">
+            <p id="questionP">{currentQuestion.question}</p>
+          </div>
+
+          <div className="options-scroll-container">
+            <div className="options-container">
+              {currentQuestion.options.map((option, index) => (
+                <label
+                  key={`${currentQuestion.question}-${option}`}
+                  className="option-radio"
+                >
+                  <input
+                    type="radio"
+                    name={currentQuestion.question}
+                    value={option}
+                    checked={answers[currentQuestion.question] === option}
+                    onChange={() =>
+                      handleAnswerChange(
+                        currentQuestion.question,
+                        option,
+                        currentQuestion.scores[index]
+                      )
+                    }
+                  />
+                  <span className="option-text">{option}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div className="navigation-buttons">
+            <button
+              onClick={goToPreviousQuestion}
+              disabled={
+                currentCategoryIndex === 0 && currentQuestionIndex === 0
+              }
+            >
+              Previous
+            </button>
+            <button onClick={handleNextClick}>
+              {currentCategoryIndex === categories.length - 1 &&
+              currentQuestionIndex === currentCategory.questions.length - 1
+                ? "Finish"
+                : "Next"}
+            </button>
+          </div>
         </div>
-        {/* <div
-          className="imgDiv"
-          style={{
-            backgroundImage: `url(${
-              categoryImages[currentCategory.name] || ""
-            })`,
-          }}
-        ></div> */}
       </div>
     </div>
   );
 };
+
 const CategoryProgressBar = ({ categories, progress }) => {
-  const totalDots = 6;
+  const totalDots = categories.length + 1;
+
   return (
     <div className="category-progress-bar">
       <div className="progress-line">
